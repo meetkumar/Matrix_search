@@ -1,0 +1,31 @@
+Matrix_Search( int left, int right, int top, int bottom, int value, int A[][])
+{
+	  mid_row= left+right/2;	//Calculating mid for the row
+	  mid_col= top+bottom/2;	//Calculating mid for the column
+	  if( left > right || top > bottom) return false;
+	  if( value > A[left][top] || value < A[right][bottom])
+	  {
+		    if(value == A[mid_row][mid_col] ) 
+        {//If value found print its location
+	          print location of value i.e. mid_row & mid_col;
+		        return true;
+    }
+    elseif(value > A[mid_row][mid_col])	
+    {//If value is large than mid, then call matrix search recursively
+        return Matrix_Search(mid_row+1,mid_col+1,bottom,right,value,A[][]) ||Matrix_Search(left,mid_row+1,mid_col,bottom,value,A[][]) || Matrix_Search(mid_col+1,top,right,mid_row,value,A[][]);
+    }
+    elseif(value < A[mid_row][mid_col])
+    {//If value is small than mid, then call matrix search recursively
+        return Matrix_Search(mid_col+1,top,right,mid_row,value,A[][]) || Matrix_Search(left,mid_row+1,mid_col,bottom,value,A[][]) || Matrix_Search(left,top,mid_row,mid_col,value,A[][]);
+    }
+    else
+    {//value not present in matrix
+	      print location not found;
+	      return false;
+    }
+}
+else
+{
+	print value not in matrix;
+	return false;
+}
